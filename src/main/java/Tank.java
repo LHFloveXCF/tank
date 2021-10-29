@@ -11,10 +11,31 @@ public class Tank {
     private TankFrame tankFrame;
 
     public void paint(Graphics g) {
-        Color color = g.getColor();
+        /*Color color = g.getColor();
         g.setColor(Color.BLUE);
         g.fillRect(x, y, 50, 50);
-        g.setColor(color);
+        g.setColor(color);*/
+
+        switch (dir) {
+            case UP:
+                g.drawImage(ResourceManager.tankU, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceManager.tankD, x, y, null);
+                break;
+            case LEFT:
+                g.drawImage(ResourceManager.tankL, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceManager.tankR, x, y, null);
+                break;
+            default:
+                break;
+        }
+        move();
+    }
+
+    private void move() {
         if (!moving) {
             return;
         }

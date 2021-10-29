@@ -24,7 +24,6 @@ public class TankFrame extends Frame {
     public static final int GAME_WIDTH = 800, GAME_HEIGHT = 800;
     List<Bullet> bullets = new ArrayList<>();
     Tank myTank = new Tank(200, 200, Dir.DOWN, this);
-    Bullet bullet = new Bullet(300, 300, Dir.DOWN);
 
     public TankFrame() {
         setSize(800, 800);
@@ -59,7 +58,6 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-
         Color color = g.getColor();
         g.setColor(Color.WHITE);
         g.drawString("bullet count : " + bullets.size(), 10, 40);
