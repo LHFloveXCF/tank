@@ -13,9 +13,11 @@ import static java.awt.event.KeyEvent.*;
  * 1：此时我们的面板上只有一个黑色的正方形方块，我们可以把他想象成一个坦克，
  * 但是如果我们想要有多个坦克呢？每个坦克的位置都不同呢？
  * 这个时候我们就要抽象出来一个坦克的类，这个坦克包含了起始位置，坦克的移动
+ * 2：封装一个子弹bullet对象，并让子弹可以移动
  */
 public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN);
+    Bullet bullet = new Bullet(300, 300, Dir.DOWN);
 
     public TankFrame() {
         setSize(800, 800);
@@ -36,6 +38,7 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
+        bullet.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {
