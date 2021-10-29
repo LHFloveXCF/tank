@@ -4,13 +4,17 @@ import java.awt.*;
  * tank
  */
 public class Tank {
-    private int x = 100, y = 100;
+    private int x, y;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 10;
     private boolean moving = false;
+    private TankFrame tankFrame;
 
     public void paint(Graphics g) {
+        Color color = g.getColor();
+        g.setColor(Color.BLUE);
         g.fillRect(x, y, 50, 50);
+        g.setColor(color);
         if (!moving) {
             return;
         }
@@ -32,10 +36,11 @@ public class Tank {
         }
     }
 
-    public Tank(int x, int y, Dir dir) {
+    public Tank(int x, int y, Dir dir, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tankFrame = tankFrame;
     }
 
     public Dir getDir() {
@@ -52,5 +57,9 @@ public class Tank {
 
     public void setMoving(boolean moving) {
         this.moving = moving;
+    }
+
+    public void fire() {
+        tankFrame.bullets.add(new Bullet(x, y, dir));
     }
 }

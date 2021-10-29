@@ -5,9 +5,10 @@ import java.awt.*;
  */
 public class Bullet {
     private int x, y;
-    private static final int SPEED = 5;
+    private static final int SPEED = 10;
     private static final int WIDTH = 30, HEIGHT = 30;
     private Dir dir;
+    private boolean live = true;
 
     public void paint(Graphics g) {
         Color color = g.getColor();
@@ -30,6 +31,10 @@ public class Bullet {
             default:
                 break;
         }
+
+        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+            live = false;
+        }
     }
 
     public Bullet(int x, int y, Dir dir) {
@@ -46,4 +51,11 @@ public class Bullet {
         this.dir = dir;
     }
 
+    public boolean isLive() {
+        return live;
+    }
+
+    public void setLive(boolean live) {
+        this.live = live;
+    }
 }
