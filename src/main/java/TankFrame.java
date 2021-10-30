@@ -87,16 +87,22 @@ public class TankFrame extends Frame {
             tanks.get(i).paint(g);
         }*/
 
-        Iterator<Bullet> iterator = bullets.iterator();
-        while (iterator.hasNext()) {
-            Bullet next = iterator.next();
-            if (next.isLive()) {
-                next.paint(g);
-            } else {
-                iterator.remove();
+        checkBulletValid(g);
+
+        checkTankValid(g);
+
+        checkCollision();
+    }
+
+    private void checkCollision() {
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < tanks.size(); j++) {
+                bullets.get(i).collisionDetection(tanks.get(j));
             }
         }
+    }
 
+    private void checkTankValid(Graphics g) {
         Iterator<Tank> tankIterator = tanks.iterator();
         while (tankIterator.hasNext()) {
             Tank next = tankIterator.next();
@@ -106,10 +112,16 @@ public class TankFrame extends Frame {
                 tankIterator.remove();
             }
         }
+    }
 
-        for (int i = 0; i < bullets.size(); i++) {
-            for (int j = 0; j < tanks.size(); j++) {
-                bullets.get(i).collisionDetection(tanks.get(j));
+    private void checkBulletValid(Graphics g) {
+        Iterator<Bullet> iterator = bullets.iterator();
+        while (iterator.hasNext()) {
+            Bullet next = iterator.next();
+            if (next.isLive()) {
+                next.paint(g);
+            } else {
+                iterator.remove();
             }
         }
     }
