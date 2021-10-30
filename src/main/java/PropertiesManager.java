@@ -1,14 +1,18 @@
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Properties;
 
 /**
  * tank
  */
 public class PropertiesManager {
-    static Properties properties = new Properties();
+    private static volatile PropertiesManager instance;
+    private Properties properties;
 
-    static {
+    /**
+     * 将构造器设置为私有，外部不允许调用
+     */
+    private PropertiesManager() {
+        properties = new Properties();
         try {
             properties.load(PropertiesManager.class.getResourceAsStream("config.properties"));
         } catch (IOException e) {
@@ -16,11 +20,32 @@ public class PropertiesManager {
         }
     }
 
-    public static Object getObject(String key) {
+    public static PropertiesManager getInstance() {
+        if (null == instance) {
+            synchronized (PropertiesManager.class) {
+                if (null == instance) {
+                    instance = new PropertiesManager();
+                }
+            }
+        }
+        return instance;
+    }
+
+    // static Properties properties = new Properties();
+
+    // static {
+    //     try {
+    //         properties.load(PropertiesManager.class.getResourceAsStream("config.properties"));
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+
+    public Object getObject(String key) {
         return properties.getProperty(key);
     }
 
-    public static Integer getIntValue(String key) {
+    public Integer getIntValue(String key) {
         return Integer.parseInt(properties.getProperty(key));
     }
 }

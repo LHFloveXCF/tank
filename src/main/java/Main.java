@@ -2,7 +2,8 @@
  * tank
  */
 public class Main {
-    private static final int TANKS_COUNT = PropertiesManager.getIntValue("tank");
+    // private static final int TANKS_COUNT = PropertiesManager.getIntValue("tank");
+    private static final int TANKS_COUNT = PropertiesManager.getInstance().getIntValue("tank");
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
         for (int i = 0; i < TANKS_COUNT; i++) {
