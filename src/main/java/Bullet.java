@@ -7,7 +7,7 @@ import java.awt.*;
 public class Bullet {
     private int x, y;
     private static final int SPEED = 20;
-    private static final int WIDTH = 30, HEIGHT = 30;
+    private static final int WIDTH = ResourceManager.explodes[0].getWidth(), HEIGHT = ResourceManager.explodes[0].getHeight();
     private Dir dir;
     private boolean live = true;
     private Group group;
@@ -120,6 +120,10 @@ public class Bullet {
         if (isLive() && tank.isLive() && rectangle.intersects(tank.getRectangle())) {
             tank.setLive(false);
             setLive(false);
+
+            int eX = tank.getX() + TankFrame.tankWidth / 2 - WIDTH / 2;
+            int eY = tank.getY() + TankFrame.tankHeight / 2 - HEIGHT / 2;
+            tankFrame.explodes.add(new Explode(eX, eY, tankFrame));
         }
     }
 }

@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.GOTO;
+
 import java.awt.*;
 
 /**
@@ -21,21 +23,34 @@ public class Tank {
         g.setColor(color);*/
         switch (dir) {
             case UP:
-                g.drawImage(ResourceManager.tankU, x, y, null);
+                g.drawImage(group == Group.GOOD ? ResourceManager.goodTankU : ResourceManager.badTankU, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(ResourceManager.tankD, x, y, null);
+                g.drawImage(group == Group.GOOD ? ResourceManager.goodTankD : ResourceManager.badTankD, x, y, null);
                 break;
             case LEFT:
-                g.drawImage(ResourceManager.tankL, x, y, null);
+                g.drawImage(group == Group.GOOD ? ResourceManager.goodTankL : ResourceManager.badTankL, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(ResourceManager.tankR, x, y, null);
+                g.drawImage(group == Group.GOOD ? ResourceManager.goodTankR : ResourceManager.badTankR, x, y, null);
                 break;
             default:
                 break;
         }
+
+        randomDir();
+
         move();
+    }
+
+    /**
+     * 敌方坦克随机移动
+     */
+    private void randomDir() {
+        if (group == Group.BAD && (Math.random() * 100) < 10) {
+            int dirIndex = (int) (Math.random() * Dir.values().length);
+            dir = Dir.values()[dirIndex];
+        }
     }
 
     private void move() {
@@ -59,12 +74,29 @@ public class Tank {
                 break;
         }
 
+        checkBoundary();
+
         rectangle.x = x;
         rectangle.y = y;
 
         // 如果是地方坦克，判断是否需要发射子弹
-        if (group == Group.BAD && Math.random() * 100 < 50) {
+        if (group == Group.BAD && Math.random() * 100 < 10) {
             fire();
+        }
+    }
+
+    private void checkBoundary() {
+        if (x < TankFrame.tankWidth) {
+            x = TankFrame.tankWidth;
+        }
+        if (y < TankFrame.tankWidth) {
+            y = TankFrame.tankWidth;
+        }
+        if (x > TankFrame.GAME_WIDTH) {
+            x = TankFrame.GAME_WIDTH - TankFrame.tankWidth;
+        }
+        if (y > TankFrame.GAME_HEIGHT) {
+            y = TankFrame.GAME_HEIGHT - TankFrame.tankHeight;
         }
     }
 
