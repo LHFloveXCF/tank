@@ -22,6 +22,7 @@ import static java.awt.event.KeyEvent.*;
  * 5：给坦克添加图片
  * 6：给子弹添加图片
  * 7：增加敌军坦克
+ * 8：让敌方坦克发射子弹
  */
 public class TankFrame extends Frame {
     public static final int GAME_WIDTH = 800, GAME_HEIGHT = 800;
@@ -34,7 +35,7 @@ public class TankFrame extends Frame {
     /** 子弹列表 */
     List<Bullet> bullets = new ArrayList<>();
     /** 主战坦克 */
-    Tank myTank = new Tank(200, 200, Dir.DOWN, this);
+    Tank myTank = new Tank(200, 200, Dir.DOWN, this, Group.GOOD);
     /** 敌方坦克 */
     List<Tank> tanks = new ArrayList<>();
 
@@ -54,6 +55,9 @@ public class TankFrame extends Frame {
         });
     }
 
+    /**
+     * 双缓冲解决闪烁问题
+     */
     Image offImage = null;
     @Override
     public void update(Graphics g) {
@@ -90,6 +94,12 @@ public class TankFrame extends Frame {
                 next.paint(g);
             } else {
                 iterator.remove();
+            }
+        }
+
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < tanks.size(); j++) {
+                bullets.get(i).collisionDetection(tanks.get(j));
             }
         }
     }

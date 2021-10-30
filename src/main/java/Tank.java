@@ -5,10 +5,11 @@ import java.awt.*;
  */
 public class Tank {
     private int x, y;
-    private Dir dir = Dir.DOWN;
-    private static final int SPEED = 10;
-    private boolean moving = false;
+    private Dir dir;
+    private static final int SPEED = 5;
+    private boolean moving = true;
     private TankFrame tankFrame;
+    private Group group = Group.BAD;
 
     public void paint(Graphics g) {
         /*Color color = g.getColor();
@@ -54,13 +55,18 @@ public class Tank {
             default:
                 break;
         }
+        // 如果是地方坦克，判断是否需要发射子弹
+        if (group == Group.BAD && Math.random() * 100 < 50) {
+            fire();
+        }
     }
 
-    public Tank(int x, int y, Dir dir, TankFrame tankFrame) {
+    public Tank(int x, int y, Dir dir, TankFrame tankFrame, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tankFrame = tankFrame;
+        this.group = group;
     }
 
     public Dir getDir() {
@@ -79,13 +85,37 @@ public class Tank {
         this.moving = moving;
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     /**
      * 坦克发射子弹的时候定位子弹的初始位置
      */
     public void fire() {
         int bulletX = x + TankFrame.tankWidth / 2 - TankFrame.bulletWidth / 2;
         int bulletY = y + TankFrame.tankHeight / 2 - TankFrame.bulletHeight / 2;
-        tankFrame.bullets.add(new Bullet(bulletX, bulletY, dir));
+        tankFrame.bullets.add(new Bullet(bulletX, bulletY, dir, group, tankFrame));
     }
 
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }

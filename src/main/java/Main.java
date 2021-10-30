@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
         for (int i = 0; i < TANKS_COUNT; i++) {
-            tankFrame.tanks.add(new Tank(100 + i * 40, 100, Dir.DOWN, tankFrame));
+            tankFrame.tanks.add(new Tank(100 + i * 40, 100, Dir.DOWN, tankFrame, Group.BAD));
         }
 
         while (true) {
