@@ -2,6 +2,7 @@ import java.awt.*;
 
 /**
  * tank
+ * 子弹
  */
 public class Bullet {
     private int x, y;

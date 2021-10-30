@@ -26,7 +26,6 @@ import static java.awt.event.KeyEvent.*;
  */
 public class TankFrame extends Frame {
     public static final int GAME_WIDTH = 800, GAME_HEIGHT = 800;
-
     public static int bulletWidth = ResourceManager.bulletD.getWidth();
     public static int bulletHeight = ResourceManager.bulletD.getHeight();
     public static int tankWidth = ResourceManager.tankD.getWidth();
@@ -38,6 +37,7 @@ public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN, this, Group.GOOD);
     /** 敌方坦克 */
     List<Tank> tanks = new ArrayList<>();
+    Explode explode = new Explode(50,50, this);
 
     public TankFrame() {
         setSize(800, 800);
@@ -80,6 +80,8 @@ public class TankFrame extends Frame {
         g.drawString("子弹数量 : " + bullets.size(), 10, 40);
         g.drawString("敌方坦克数量 : " + tanks.size(), 10, 60);
         g.setColor(color);
+
+        explode.paint(g);
 
         myTank.paint(g);
 

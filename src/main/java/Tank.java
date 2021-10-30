@@ -2,6 +2,7 @@ import java.awt.*;
 
 /**
  * tank
+ * 坦克
  */
 public class Tank {
     private int x, y;
