@@ -25,7 +25,7 @@ import static java.awt.event.KeyEvent.*;
  * 8：让敌方坦克发射子弹
  */
 public class TankFrame extends Frame {
-    public static final int GAME_WIDTH = 800, GAME_HEIGHT = 800;
+    public static final int GAME_WIDTH = PropertiesManager.getIntValue("game_width"), GAME_HEIGHT = PropertiesManager.getIntValue("game_height");
     public static int bulletWidth = ResourceManager.bulletD.getWidth();
     public static int bulletHeight = ResourceManager.bulletD.getHeight();
     public static int tankWidth = ResourceManager.goodTankU.getWidth();
