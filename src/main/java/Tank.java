@@ -9,7 +9,9 @@ public class Tank {
     private static final int SPEED = 5;
     private boolean moving = true;
     private TankFrame tankFrame;
-    private Group group = Group.BAD;
+    private Group group;
+    private Rectangle rectangle;
+    private boolean live = true;
 
     public void paint(Graphics g) {
         /*Color color = g.getColor();
@@ -55,6 +57,10 @@ public class Tank {
             default:
                 break;
         }
+
+        rectangle.x = x;
+        rectangle.y = y;
+
         // 如果是地方坦克，判断是否需要发射子弹
         if (group == Group.BAD && Math.random() * 100 < 50) {
             fire();
@@ -67,6 +73,11 @@ public class Tank {
         this.dir = dir;
         this.tankFrame = tankFrame;
         this.group = group;
+        rectangle = new Rectangle();
+        rectangle.x = this.x;
+        rectangle.y = this.y;
+        rectangle.width = TankFrame.tankWidth;
+        rectangle.height = TankFrame.tankHeight;
     }
 
     public Dir getDir() {
@@ -117,5 +128,21 @@ public class Tank {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
+    }
+
+    public boolean isLive() {
+        return live;
+    }
+
+    public void setLive(boolean live) {
+        this.live = live;
     }
 }

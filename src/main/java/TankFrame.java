@@ -83,9 +83,9 @@ public class TankFrame extends Frame {
 
         myTank.paint(g);
 
-        for (int i = 0; i < tanks.size(); i++) {
+        /*for (int i = 0; i < tanks.size(); i++) {
             tanks.get(i).paint(g);
-        }
+        }*/
 
         Iterator<Bullet> iterator = bullets.iterator();
         while (iterator.hasNext()) {
@@ -94,6 +94,16 @@ public class TankFrame extends Frame {
                 next.paint(g);
             } else {
                 iterator.remove();
+            }
+        }
+
+        Iterator<Tank> tankIterator = tanks.iterator();
+        while (tankIterator.hasNext()) {
+            Tank next = tankIterator.next();
+            if (next.isLive()) {
+                next.paint(g);
+            } else {
+                tankIterator.remove();
             }
         }
 
