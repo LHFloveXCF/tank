@@ -86,16 +86,16 @@ public class Tank {
     }
 
     private void checkBoundary() {
-        if (x < TankFrame.tankWidth) {
-            x = TankFrame.tankWidth;
+        if (x < 30) {
+            x = 30;
         }
-        if (y < TankFrame.tankWidth) {
-            y = TankFrame.tankWidth;
+        if (y < 0) {
+            y = 30;
         }
-        if (x > TankFrame.GAME_WIDTH) {
+        if (x > TankFrame.GAME_WIDTH - TankFrame.tankWidth) {
             x = TankFrame.GAME_WIDTH - TankFrame.tankWidth;
         }
-        if (y > TankFrame.GAME_HEIGHT) {
+        if (y > TankFrame.GAME_HEIGHT - TankFrame.tankHeight) {
             y = TankFrame.GAME_HEIGHT - TankFrame.tankHeight;
         }
     }
