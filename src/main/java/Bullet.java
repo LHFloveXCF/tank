@@ -11,10 +11,39 @@ public class Bullet {
     private boolean live = true;
 
     public void paint(Graphics g) {
-        Color color = g.getColor();
+        /*Color color = g.getColor();
         g.setColor(Color.RED);
         g.fillOval(x,y,WIDTH, HEIGHT);
-        g.setColor(color);
+        g.setColor(color);*/
+
+        addBuffImage(g);
+        move();
+
+        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+            live = false;
+        }
+    }
+
+    private void addBuffImage(Graphics g) {
+        switch (dir) {
+            case UP:
+                g.drawImage(ResourceManager.bulletU, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceManager.bulletD, x, y, null);
+                break;
+            case LEFT:
+                g.drawImage(ResourceManager.bulletL, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceManager.bulletR, x, y, null);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void move() {
         switch (dir) {
             case UP:
                 y -= SPEED;
@@ -30,10 +59,6 @@ public class Bullet {
                 break;
             default:
                 break;
-        }
-
-        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
-            live = false;
         }
     }
 

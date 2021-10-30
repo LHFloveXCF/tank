@@ -19,11 +19,24 @@ import static java.awt.event.KeyEvent.*;
  * 2：封装一个子弹bullet对象，并让子弹可以移动
  * 3：让坦克发射一枚子弹
  * 4：让坦克发射多个子弹,让坦克持有一个画板的引用，这样可以将生成的子弹发送到画板上。
+ * 5：给坦克添加图片
+ * 6：给子弹添加图片
+ * 7：增加敌军坦克
  */
 public class TankFrame extends Frame {
     public static final int GAME_WIDTH = 800, GAME_HEIGHT = 800;
+
+    public static int bulletWidth = ResourceManager.bulletD.getWidth();
+    public static int bulletHeight = ResourceManager.bulletD.getHeight();
+    public static int tankWidth = ResourceManager.tankD.getWidth();
+    public static int tankHeight = ResourceManager.tankU.getHeight();
+
+    /** 子弹列表 */
     List<Bullet> bullets = new ArrayList<>();
+    /** 主战坦克 */
     Tank myTank = new Tank(200, 200, Dir.DOWN, this);
+    /** 敌方坦克 */
+    List<Tank> tanks = new ArrayList<>();
 
     public TankFrame() {
         setSize(800, 800);
@@ -60,10 +73,15 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         Color color = g.getColor();
         g.setColor(Color.WHITE);
-        g.drawString("bullet count : " + bullets.size(), 10, 40);
+        g.drawString("子弹数量 : " + bullets.size(), 10, 40);
+        g.drawString("敌方坦克数量 : " + tanks.size(), 10, 60);
         g.setColor(color);
 
         myTank.paint(g);
+
+        for (int i = 0; i < tanks.size(); i++) {
+            tanks.get(i).paint(g);
+        }
 
         Iterator<Bullet> iterator = bullets.iterator();
         while (iterator.hasNext()) {

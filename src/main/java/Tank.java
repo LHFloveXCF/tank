@@ -15,7 +15,6 @@ public class Tank {
         g.setColor(Color.BLUE);
         g.fillRect(x, y, 50, 50);
         g.setColor(color);*/
-
         switch (dir) {
             case UP:
                 g.drawImage(ResourceManager.tankU, x, y, null);
@@ -80,7 +79,13 @@ public class Tank {
         this.moving = moving;
     }
 
+    /**
+     * 坦克发射子弹的时候定位子弹的初始位置
+     */
     public void fire() {
-        tankFrame.bullets.add(new Bullet(x, y, dir));
+        int bulletX = x + TankFrame.tankWidth / 2 - TankFrame.bulletWidth / 2;
+        int bulletY = y + TankFrame.tankHeight / 2 - TankFrame.bulletHeight / 2;
+        tankFrame.bullets.add(new Bullet(bulletX, bulletY, dir));
     }
+
 }
