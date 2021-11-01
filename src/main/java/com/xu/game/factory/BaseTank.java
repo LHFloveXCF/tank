@@ -11,7 +11,7 @@ import java.awt.*;
  * tank
  * 这里只抽象了一个方法
  */
-public class BaseTank {
+public abstract class BaseTank {
     protected boolean live = true;
     protected boolean moving = true;
     protected Dir dir;
@@ -20,9 +20,9 @@ public class BaseTank {
     protected Rectangle rectangle;
     protected TankFrame tankFrame;
 
-    public void paint(Graphics graphics){}
+    public abstract void paint(Graphics graphics);
 
-    public void fire(IFireStrategy strategy){}
+    public abstract void fire(IFireStrategy strategy);
 
     public boolean isLive() {
         return live;

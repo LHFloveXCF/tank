@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * tank
  */
-public class BaseBullet {
+public abstract class BaseBullet {
 
     /** 子弹是否存活 */
     protected boolean live = true;
@@ -14,14 +14,13 @@ public class BaseBullet {
      * 绘制
      * @param graphics
      */
-    public void paint(Graphics graphics){}
+    public abstract void paint(Graphics graphics);
 
     /**
      * 碰撞检测
      * @param baseTank
      */
-    public void collisionDetection(BaseTank baseTank) {
-    }
+    public abstract void collisionDetection(BaseTank baseTank);
 
     public boolean isLive() {
         return live;

@@ -5,12 +5,11 @@ import java.awt.*;
 /**
  * tank
  */
-public class BaseExplode {
+public abstract class BaseExplode {
 
     protected boolean live = true;
 
-    public void paint(Graphics g) {
-    }
+    public abstract void paint(Graphics g);
 
     public boolean isLive() {
         return live;
