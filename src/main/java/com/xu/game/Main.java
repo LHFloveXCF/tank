@@ -1,8 +1,10 @@
+package com.xu.game;
+
 /**
  * tank
  */
 public class Main {
-    // private static final int TANKS_COUNT = PropertiesManager.getIntValue("tank");
+    // private static final int TANKS_COUNT = com.xu.game.PropertiesManager.getIntValue("tank");
     private static final int TANKS_COUNT = PropertiesManager.getInstance().getIntValue("tank");
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();

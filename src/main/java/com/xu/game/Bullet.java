@@ -1,3 +1,5 @@
+package com.xu.game;
+
 import java.awt.*;
 
 /**

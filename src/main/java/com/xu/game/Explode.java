@@ -1,3 +1,5 @@
+package com.xu.game;
+
 import java.awt.*;
 
 /**
@@ -25,7 +27,7 @@ public class Explode {
         this.y = y;
         this.tankFrame = tankFrame;
         this.step = 0;
-        new Thread(() -> new Audio("audio/explode.wav").play()).start();
+        new Thread(() -> new Audio("/audio/explode.wav").play()).start();
     }
 
     public int getX() {

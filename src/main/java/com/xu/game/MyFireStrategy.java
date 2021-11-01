@@ -1,3 +1,5 @@
+package com.xu.game;
+
 /**
  * tank
  * 我的坦克，可以上下发射子弹

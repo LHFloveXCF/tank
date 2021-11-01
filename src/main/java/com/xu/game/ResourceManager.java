@@ -1,3 +1,5 @@
+package com.xu.game;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,10 +17,10 @@ public class ResourceManager {
 
     static {
         try {
-            // tankU = ImageIO.read(ResourceManager.class.getResourceAsStream("/images/tankU.gif"));
-            // tankD = ImageIO.read(ResourceManager.class.getResourceAsStream("/images/tankD.gif"));
-            // tankL = ImageIO.read(ResourceManager.class.getResourceAsStream("/images/tankL.gif"));
-            // tankR = ImageIO.read(ResourceManager.class.getResourceAsStream("/images/tankR.gif"));
+            // tankU = ImageIO.read(com.xu.game.ResourceManager.class.getResourceAsStream("/images/tankU.gif"));
+            // tankD = ImageIO.read(com.xu.game.ResourceManager.class.getResourceAsStream("/images/tankD.gif"));
+            // tankL = ImageIO.read(com.xu.game.ResourceManager.class.getResourceAsStream("/images/tankL.gif"));
+            // tankR = ImageIO.read(com.xu.game.ResourceManager.class.getResourceAsStream("/images/tankR.gif"));
 
             goodTankU = ImageIO.read(ResourceManager.class.getResourceAsStream("/images/GoodTank1.png"));
             goodTankR = ImageUtil.rotateImage(goodTankU, 90);

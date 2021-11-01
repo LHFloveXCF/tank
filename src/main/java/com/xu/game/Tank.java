@@ -1,18 +1,22 @@
+package com.xu.game;
+
+import com.xu.game.factory.BaseTank;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 /**
  * tank
  * 坦克
  */
-public class Tank {
+public class Tank extends BaseTank {
     private int x, y;
-    private Dir dir;
     private static final int SPEED = 5;
     private boolean moving = true;
     private TankFrame tankFrame;
     private Group group;
     private Rectangle rectangle;
-    private boolean live = true;
+
 
     public void paint(Graphics g) {
         /*Color color = g.getColor();
@@ -178,14 +182,6 @@ public class Tank {
 
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
-    }
-
-    public boolean isLive() {
-        return live;
-    }
-
-    public void setLive(boolean live) {
-        this.live = live;
     }
 
     public TankFrame getTankFrame() {

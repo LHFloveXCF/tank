@@ -1,3 +1,5 @@
+package com.xu.game;
+
 /**
  * 坦克的发射策略
  */

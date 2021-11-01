@@ -1,3 +1,5 @@
+package com.xu.game;
+
 import java.io.IOException;
 import java.util.Properties;
 
@@ -14,7 +16,7 @@ public class PropertiesManager {
     private PropertiesManager() {
         properties = new Properties();
         try {
-            properties.load(PropertiesManager.class.getResourceAsStream("config.properties"));
+            properties.load(PropertiesManager.class.getResourceAsStream("/config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +37,7 @@ public class PropertiesManager {
 
     // static {
     //     try {
-    //         properties.load(PropertiesManager.class.getResourceAsStream("config.properties"));
+    //         properties.load(com.xu.game.PropertiesManager.class.getResourceAsStream("config.properties"));
     //     } catch (IOException e) {
     //         e.printStackTrace();
     //     }

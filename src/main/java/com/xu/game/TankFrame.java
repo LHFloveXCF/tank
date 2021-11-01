@@ -1,3 +1,8 @@
+package com.xu.game;
+
+import com.xu.game.factory.BaseTank;
+import com.xu.game.factory.DefaultGameFactory;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -32,13 +37,16 @@ public class TankFrame extends Frame {
     public static int tankWidth = ResourceManager.goodTankU.getWidth();
     public static int tankHeight = ResourceManager.goodTankU.getHeight();
 
+    /** 工厂实例，可以设计成单例模式 */
+    DefaultGameFactory gameFactory = new DefaultGameFactory();
+
     /** 子弹列表 */
     List<Bullet> bullets = new ArrayList<>();
     /** 主战坦克 */
-    Tank myTank = new Tank(200, 200, Dir.DOWN, this, Group.GOOD);
+    BaseTank myTank = gameFactory.create(200, 200, Dir.DOWN, this, Group.GOOD);
     /** 敌方坦克 */
     List<Tank> tanks = new ArrayList<>();
-    // Explode explode = new Explode(50,50, this);
+    // com.xu.game.Explode explode = new com.xu.game.Explode(50,50, this);
     /** 爆炸数 */
     List<Explode> explodes = new ArrayList<>();
 
