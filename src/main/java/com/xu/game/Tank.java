@@ -1,6 +1,8 @@
 package com.xu.game;
 
 import com.xu.game.factory.BaseTank;
+import com.xu.game.strategy.DefaultFireStrategy;
+import com.xu.game.strategy.IFireStrategy;
 
 import java.awt.*;
 

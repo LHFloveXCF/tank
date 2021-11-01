@@ -1,5 +1,6 @@
 package com.xu.game;
 
+import com.xu.game.factory.BaseBullet;
 import com.xu.game.factory.BaseTank;
 
 import java.awt.*;
@@ -8,12 +9,12 @@ import java.awt.*;
  * tank
  * 子弹
  */
-public class Bullet {
+public class Bullet extends BaseBullet {
     private int x, y;
     private static final int SPEED = 20;
     private static final int WIDTH = ResourceManager.explodes[0].getWidth(), HEIGHT = ResourceManager.explodes[0].getHeight();
     private Dir dir;
-    private boolean live = true;
+
     private Group group;
     private TankFrame tankFrame;
     private Rectangle rectangle;

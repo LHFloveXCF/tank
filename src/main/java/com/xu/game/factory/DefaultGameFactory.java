@@ -1,9 +1,6 @@
 package com.xu.game.factory;
 
-import com.xu.game.Dir;
-import com.xu.game.Group;
-import com.xu.game.Tank;
-import com.xu.game.TankFrame;
+import com.xu.game.*;
 
 /**
  * tank
@@ -12,7 +9,7 @@ public class DefaultGameFactory implements AbstractGameFactory {
     private DefaultGameFactory() {
     }
 
-    static class InnerDefaultGameFactory {
+    private static class InnerDefaultGameFactory {
         private static final DefaultGameFactory FACTORY = new DefaultGameFactory();
     }
 
@@ -27,7 +24,7 @@ public class DefaultGameFactory implements AbstractGameFactory {
 
     @Override
     public BaseBullet create(int x, int y, Dir dir, Group group, TankFrame tankFrame) {
-        return null;
+        return new Bullet(x, y, dir, group, tankFrame);
     }
 
     @Override

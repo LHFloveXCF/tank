@@ -1,4 +1,6 @@
-package com.xu.game;
+package com.xu.game.strategy;
+
+import com.xu.game.Tank;
 
 /**
  * 坦克的发射策略

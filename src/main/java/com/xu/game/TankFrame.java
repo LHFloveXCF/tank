@@ -1,8 +1,10 @@
 package com.xu.game;
 
 import com.xu.game.factory.AbstractGameFactory;
+import com.xu.game.factory.BaseBullet;
 import com.xu.game.factory.BaseTank;
 import com.xu.game.factory.DefaultGameFactory;
+import com.xu.game.strategy.MyFireStrategy;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -39,12 +41,12 @@ public class TankFrame extends Frame {
     public static int tankHeight = ResourceManager.goodTankU.getHeight();
 
     /** 工厂实例，可以设计成单例模式 */
-    AbstractGameFactory gameFactory = DefaultGameFactory.getInstance();
+    // AbstractGameFactory gameFactory = DefaultGameFactory.getInstance();
 
     /** 子弹列表 */
-    List<Bullet> bullets = new ArrayList<>();
+    List<BaseBullet> bullets = new ArrayList<>();
     /** 主战坦克 */
-    BaseTank myTank = gameFactory.create(200, 200, Dir.DOWN, this, Group.GOOD);
+    BaseTank myTank = Main.FACTORY.create(200, 200, Dir.DOWN, this, Group.GOOD);
     /** 敌方坦克 */
     List<BaseTank> tanks = new ArrayList<>();
     // com.xu.game.Explode explode = new com.xu.game.Explode(50,50, this);
@@ -145,9 +147,9 @@ public class TankFrame extends Frame {
     }
 
     private void checkBulletValid(Graphics g) {
-        Iterator<Bullet> iterator = bullets.iterator();
+        Iterator<BaseBullet> iterator = bullets.iterator();
         while (iterator.hasNext()) {
-            Bullet next = iterator.next();
+            BaseBullet next = iterator.next();
             if (next.isLive()) {
                 next.paint(g);
             } else {

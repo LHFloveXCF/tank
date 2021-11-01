@@ -2,7 +2,7 @@ package com.xu.game.factory;
 
 import com.xu.game.Dir;
 import com.xu.game.Group;
-import com.xu.game.IFireStrategy;
+import com.xu.game.strategy.IFireStrategy;
 
 import java.awt.*;
 
