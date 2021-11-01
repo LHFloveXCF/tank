@@ -1,5 +1,7 @@
 package com.xu.game;
 
+import com.xu.game.factory.BaseTank;
+
 import java.awt.*;
 
 /**
@@ -108,7 +110,7 @@ public class Bullet {
         this.group = group;
     }
 
-    public void collisionDetection(Tank tank) {
+    public void collisionDetection(BaseTank tank) {
         if (group == tank.getGroup()) {
             return;
         }

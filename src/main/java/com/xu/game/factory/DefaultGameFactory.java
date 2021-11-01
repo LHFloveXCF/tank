@@ -9,6 +9,17 @@ import com.xu.game.TankFrame;
  * tank
  */
 public class DefaultGameFactory implements AbstractGameFactory {
+    private DefaultGameFactory() {
+    }
+
+    static class InnerDefaultGameFactory {
+        private static final DefaultGameFactory FACTORY = new DefaultGameFactory();
+    }
+
+    public static DefaultGameFactory getInstance() {
+        return InnerDefaultGameFactory.FACTORY;
+    }
+
     @Override
     public BaseTank create(int x, int y, Dir dir, TankFrame tankFrame, Group group) {
         return new Tank(x, y, dir, tankFrame, group);
