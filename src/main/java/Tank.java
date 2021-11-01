@@ -1,5 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.GOTO;
-
 import java.awt.*;
 
 /**
@@ -81,7 +79,8 @@ public class Tank {
 
         // 如果是地方坦克，判断是否需要发射子弹
         if (group == Group.BAD && Math.random() * 100 < 10) {
-            fire();
+            // 1.0.0版本
+            fire(new DefaultFireStrategy());
         }
     }
 
@@ -139,6 +138,7 @@ public class Tank {
 
     /**
      * 坦克发射子弹的时候定位子弹的初始位置
+     * version 1.0.0
      */
     public void fire() {
         int bulletX = x + TankFrame.tankWidth / 2 - TankFrame.bulletWidth / 2;
@@ -146,6 +146,15 @@ public class Tank {
         tankFrame.bullets.add(new Bullet(bulletX, bulletY, dir, group, tankFrame));
     }
 
+    /**
+     * 根据策略发射子弹
+     * version 1.0.1
+     *
+     * @param fireStrategy
+     */
+    public void fire(IFireStrategy fireStrategy) {
+        fireStrategy.fire(this);
+    }
 
     public int getX() {
         return x;
@@ -177,5 +186,13 @@ public class Tank {
 
     public void setLive(boolean live) {
         this.live = live;
+    }
+
+    public TankFrame getTankFrame() {
+        return tankFrame;
+    }
+
+    public void setTankFrame(TankFrame tankFrame) {
+        this.tankFrame = tankFrame;
     }
 }

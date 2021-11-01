@@ -171,7 +171,9 @@ public class TankFrame extends Frame {
                     bR = true;
                     break;
                 case VK_CONTROL:
-                    myTank.fire();
+                    // 1.0.0版本
+                    // myTank.fire();
+                    myTank.fire(new MyFireStrategy());
                 default:
                     break;
             }

@@ -79,6 +79,7 @@ public class Bullet {
         rectangle.y = this.y;
         rectangle.width = TankFrame.bulletWidth;
         rectangle.height = TankFrame.bulletHeight;
+        tankFrame.bullets.add(this);
     }
 
     public Dir getDir() {
