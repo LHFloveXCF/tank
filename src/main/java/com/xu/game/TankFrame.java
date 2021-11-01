@@ -1,9 +1,6 @@
 package com.xu.game;
 
-import com.xu.game.factory.AbstractGameFactory;
-import com.xu.game.factory.BaseBullet;
-import com.xu.game.factory.BaseTank;
-import com.xu.game.factory.DefaultGameFactory;
+import com.xu.game.factory.*;
 import com.xu.game.strategy.MyFireStrategy;
 
 import java.awt.*;
@@ -51,7 +48,7 @@ public class TankFrame extends Frame {
     List<BaseTank> tanks = new ArrayList<>();
     // com.xu.game.Explode explode = new com.xu.game.Explode(50,50, this);
     /** 爆炸数 */
-    List<Explode> explodes = new ArrayList<>();
+    List<BaseExplode> explodes = new ArrayList<>();
 
     public TankFrame() {
         setSize(800, 800);
@@ -115,9 +112,9 @@ public class TankFrame extends Frame {
      * @param g
      */
     private void checkExplodeValid(Graphics g) {
-        Iterator<Explode> explodeIterator = explodes.iterator();
+        Iterator<BaseExplode> explodeIterator = explodes.iterator();
         while (explodeIterator.hasNext()) {
-            Explode next = explodeIterator.next();
+            BaseExplode next = explodeIterator.next();
             if (next.isLive()) {
                 next.paint(g);
             } else {

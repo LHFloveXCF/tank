@@ -1,18 +1,20 @@
 package com.xu.game;
 
+import com.xu.game.factory.BaseExplode;
+
 import java.awt.*;
 
 /**
  * tank
  * 爆炸
  */
-public class Explode {
+public class Explode extends BaseExplode {
     private int x;
     private int y;
     /** 爆炸当前帧 */
     private int step;
     private TankFrame tankFrame;
-    private boolean live = true;
+
 
     public void paint(Graphics g) {
         if (step >= ResourceManager.explodes.length) {

@@ -29,6 +29,6 @@ public class DefaultGameFactory implements AbstractGameFactory {
 
     @Override
     public BaseExplode create(int x, int y, TankFrame tankFrame) {
-        return null;
+        return new Explode(x, y, tankFrame);
     }
 }

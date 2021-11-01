@@ -7,11 +7,19 @@ import java.awt.*;
  */
 public class BaseBullet {
 
+    /** 子弹是否存活 */
     protected boolean live = true;
 
-
+    /**
+     * 绘制
+     * @param graphics
+     */
     public void paint(Graphics graphics){}
 
+    /**
+     * 碰撞检测
+     * @param baseTank
+     */
     public void collisionDetection(BaseTank baseTank) {
     }
 

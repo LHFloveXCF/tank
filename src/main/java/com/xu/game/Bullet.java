@@ -129,7 +129,7 @@ public class Bullet extends BaseBullet {
 
             int eX = tank.getX() + TankFrame.tankWidth / 2 - WIDTH / 2;
             int eY = tank.getY() + TankFrame.tankHeight / 2 - HEIGHT / 2;
-            tankFrame.explodes.add(new Explode(eX, eY, tankFrame));
+            tankFrame.explodes.add(Main.FACTORY.create(eX, eY, tankFrame));
         }
     }
 }
