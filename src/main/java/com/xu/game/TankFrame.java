@@ -41,14 +41,14 @@ public class TankFrame extends Frame {
     // AbstractGameFactory gameFactory = DefaultGameFactory.getInstance();
 
     /** 子弹列表 */
-    List<BaseBullet> bullets = new ArrayList<>();
+    public List<BaseBullet> bullets = new ArrayList<>();
     /** 主战坦克 */
     BaseTank myTank = Main.FACTORY.create(200, 200, Dir.DOWN, this, Group.GOOD);
     /** 敌方坦克 */
-    List<BaseTank> tanks = new ArrayList<>();
-    // com.xu.game.Explode explode = new com.xu.game.Explode(50,50, this);
+    public List<BaseTank> tanks = new ArrayList<>();
+    // com.xu.game.component.def.Explode explode = new com.xu.game.component.def.Explode(50,50, this);
     /** 爆炸数 */
-    List<BaseExplode> explodes = new ArrayList<>();
+    public List<BaseExplode> explodes = new ArrayList<>();
 
     public TankFrame() {
         setSize(800, 800);

@@ -1,7 +1,8 @@
 package com.xu.game.strategy;
 
 import com.xu.game.*;
-import com.xu.game.strategy.IFireStrategy;
+import com.xu.game.component.def.Tank;
+import com.xu.game.factory.BaseTank;
 
 /**
  * tank
@@ -9,7 +10,7 @@ import com.xu.game.strategy.IFireStrategy;
  */
 public class MyFireStrategy implements IFireStrategy {
     @Override
-    public void fire(Tank tank) {
+    public void fire(BaseTank tank) {
         int bulletX = tank.getX() + TankFrame.tankWidth / 2 - TankFrame.bulletWidth / 2;
         int bulletUpY = tank.getY() + TankFrame.tankHeight / 2 - TankFrame.bulletHeight / 2;
         int bulletDownY = tank.getY() + TankFrame.tankHeight / 2 + TankFrame.bulletHeight / 2;

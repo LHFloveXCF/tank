@@ -1,7 +1,7 @@
 package com.xu.game;
 
 import com.xu.game.factory.AbstractGameFactory;
-import com.xu.game.factory.DefaultGameFactory;
+import com.xu.game.factory.StrangeGameFactory;
 
 /**
  * tank
@@ -9,7 +9,8 @@ import com.xu.game.factory.DefaultGameFactory;
 public class Main {
     // private static final int TANKS_COUNT = com.xu.game.PropertiesManager.getIntValue("tank");
     private static final int TANKS_COUNT = PropertiesManager.getInstance().getIntValue("tank");
-    public static final AbstractGameFactory FACTORY = DefaultGameFactory.getInstance();
+    public static final AbstractGameFactory FACTORY = StrangeGameFactory.getInstance();
+
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
         for (int i = 0; i < TANKS_COUNT; i++) {

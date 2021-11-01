@@ -1,5 +1,9 @@
-package com.xu.game;
+package com.xu.game.component.def;
 
+import com.xu.game.Dir;
+import com.xu.game.Group;
+import com.xu.game.ResourceManager;
+import com.xu.game.TankFrame;
 import com.xu.game.factory.BaseTank;
 import com.xu.game.strategy.DefaultFireStrategy;
 import com.xu.game.strategy.IFireStrategy;
@@ -11,13 +15,7 @@ import java.awt.*;
  * 坦克
  */
 public class Tank extends BaseTank {
-
     private static final int SPEED = 5;
-    private boolean moving = true;
-    private TankFrame tankFrame;
-
-
-
     public void paint(Graphics g) {
         /*Color color = g.getColor();
         g.setColor(Color.BLUE);

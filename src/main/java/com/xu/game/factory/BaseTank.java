@@ -2,6 +2,7 @@ package com.xu.game.factory;
 
 import com.xu.game.Dir;
 import com.xu.game.Group;
+import com.xu.game.TankFrame;
 import com.xu.game.strategy.IFireStrategy;
 
 import java.awt.*;
@@ -17,6 +18,7 @@ public class BaseTank {
     protected int x, y;
     protected Group group;
     protected Rectangle rectangle;
+    protected TankFrame tankFrame;
 
     public void paint(Graphics graphics){}
 
@@ -76,5 +78,13 @@ public class BaseTank {
 
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
+    }
+
+    public TankFrame getTankFrame() {
+        return tankFrame;
+    }
+
+    public void setTankFrame(TankFrame tankFrame) {
+        this.tankFrame = tankFrame;
     }
 }

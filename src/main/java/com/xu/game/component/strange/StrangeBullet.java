@@ -1,5 +1,6 @@
-package com.xu.game;
+package com.xu.game.component.strange;
 
+import com.xu.game.*;
 import com.xu.game.factory.BaseBullet;
 import com.xu.game.factory.BaseTank;
 
@@ -9,10 +10,10 @@ import java.awt.*;
  * tank
  * 子弹
  */
-public class Bullet extends BaseBullet {
+public class StrangeBullet extends BaseBullet {
     private int x, y;
-    private static final int SPEED = 20;
-    private static final int WIDTH = ResourceManager.explodes[0].getWidth(), HEIGHT = ResourceManager.explodes[0].getHeight();
+    private static final int SPEED = 3;
+    private static final int WIDTH = ResourceManager.bulletD.getWidth(), HEIGHT = ResourceManager.bulletD.getHeight();
     private Dir dir;
 
     private Group group;
@@ -20,11 +21,6 @@ public class Bullet extends BaseBullet {
     private Rectangle rectangle;
 
     public void paint(Graphics g) {
-        /*Color color = g.getColor();
-        g.setColor(Color.RED);
-        g.fillOval(x,y,WIDTH, HEIGHT);
-        g.setColor(color);*/
-
         addBuffImage(g);
         move();
 
@@ -36,18 +32,11 @@ public class Bullet extends BaseBullet {
     private void addBuffImage(Graphics g) {
         switch (dir) {
             case UP:
-                g.drawImage(ResourceManager.bulletU, x, y, null);
-                break;
             case DOWN:
-                g.drawImage(ResourceManager.bulletD, x, y, null);
-                break;
             case LEFT:
-                g.drawImage(ResourceManager.bulletL, x, y, null);
-                break;
             case RIGHT:
-                g.drawImage(ResourceManager.bulletR, x, y, null);
-                break;
             default:
+                g.drawImage(ResourceManager.bulletL, x, y, null);
                 break;
         }
     }
@@ -73,7 +62,7 @@ public class Bullet extends BaseBullet {
         rectangle.y = y;
     }
 
-    public Bullet(int x, int y, Dir dir, Group group, TankFrame tankFrame) {
+    public StrangeBullet(int x, int y, Dir dir, Group group, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;

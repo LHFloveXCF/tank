@@ -1,5 +1,8 @@
-package com.xu.game;
+package com.xu.game.component.strange;
 
+import com.xu.game.Audio;
+import com.xu.game.ResourceManager;
+import com.xu.game.TankFrame;
 import com.xu.game.factory.BaseExplode;
 
 import java.awt.*;
@@ -8,7 +11,7 @@ import java.awt.*;
  * tank
  * 爆炸
  */
-public class Explode extends BaseExplode {
+public class StrangeExplode extends BaseExplode {
     private int x;
     private int y;
     /** 爆炸当前帧 */
@@ -21,10 +24,14 @@ public class Explode extends BaseExplode {
             live = false;
             return;
         }
-        g.drawImage(ResourceManager.explodes[step++], x, y, null);
+        step++;
+        Color color = g.getColor();
+        g.setColor(Color.RED);
+        g.fillRect(x, y,50,50);
+        g.setColor(color);
     }
 
-    public Explode(int x, int y, TankFrame tankFrame) {
+    public StrangeExplode(int x, int y, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.tankFrame = tankFrame;

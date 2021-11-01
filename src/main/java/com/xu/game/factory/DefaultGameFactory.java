@@ -1,6 +1,9 @@
 package com.xu.game.factory;
 
 import com.xu.game.*;
+import com.xu.game.component.def.Bullet;
+import com.xu.game.component.def.Explode;
+import com.xu.game.component.def.Tank;
 
 /**
  * tank
