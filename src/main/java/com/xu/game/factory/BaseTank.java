@@ -22,7 +22,15 @@ public abstract class BaseTank {
 
     public abstract void paint(Graphics graphics);
 
-    public abstract void fire(IFireStrategy strategy);
+    /**
+     * 根据策略发射子弹
+     * version 1.0.1
+     *
+     * @param fireStrategy
+     */
+    public void fire(IFireStrategy fireStrategy) {
+        fireStrategy.fire(this);
+    }
 
     public boolean isLive() {
         return live;

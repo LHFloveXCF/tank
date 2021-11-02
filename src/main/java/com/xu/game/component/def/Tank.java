@@ -148,16 +148,6 @@ public class Tank extends BaseTank {
         tankFrame.bullets.add(new Bullet(bulletX, bulletY, dir, group, tankFrame));
     }
 
-    /**
-     * 根据策略发射子弹
-     * version 1.0.1
-     *
-     * @param fireStrategy
-     */
-    public void fire(IFireStrategy fireStrategy) {
-        fireStrategy.fire(this);
-    }
-
     public int getX() {
         return x;
     }
