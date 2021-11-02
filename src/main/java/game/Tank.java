@@ -1,24 +1,99 @@
+package game;
+
+import game.facade.GameModel;
+import game.facade.GameObject;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
+
+import static java.awt.event.KeyEvent.*;
 
 /**
  * tank
  * 坦克
  */
-public class Tank {
+public class Tank extends GameObject {
     private int x, y;
     private Dir dir;
     private static final int SPEED = 5;
     private boolean moving = true;
-    private TankFrame tankFrame;
+    private GameModel gm;
     private Group group;
     private Rectangle rectangle;
-    private boolean live = true;
+
+    boolean bU = false;
+    boolean bD = false;
+    boolean bL = false;
+    boolean bR = false;
+
+    @Override
+    public void keyPressEvent(KeyEvent e) {
+        int code = e.getKeyCode();
+        switch (code) {
+            case VK_DOWN:
+                bD = true;
+                break;
+            case VK_UP:
+                bU = true;
+                break;
+            case VK_LEFT:
+                bL = true;
+                break;
+            case VK_RIGHT:
+                bR = true;
+                break;
+            case VK_CONTROL:
+                // 1.0.0版本
+                fire();
+            default:
+                break;
+        }
+        setDir();
+    }
+
+    private void setDir() {
+        if (!bR && !bL && !bU && !bD) {
+            setMoving(false);
+        } else {
+            setMoving(true);
+            if (bU) {
+                setDir(Dir.UP);
+            }
+            if (bD) {
+                setDir(Dir.DOWN);
+            }
+            if (bL) {
+                setDir(Dir.LEFT);
+            }
+            if (bR) {
+               setDir(Dir.RIGHT);
+            }
+        }
+    }
+
+    @Override
+    public void keyReleasedEvent(KeyEvent e) {
+        int code = e.getKeyCode();
+        switch (code) {
+            case VK_DOWN:
+                bD = false;
+                break;
+            case VK_UP:
+                bU = false;
+                break;
+            case VK_LEFT:
+                bL = false;
+                break;
+            case VK_RIGHT:
+                bR = false;
+                break;
+            default:
+                break;
+        }
+        setDir();
+    }
 
     public void paint(Graphics g) {
-        /*Color color = g.getColor();
-        g.setColor(Color.BLUE);
-        g.fillRect(x, y, 50, 50);
-        g.setColor(color);*/
         switch (dir) {
             case UP:
                 g.drawImage(group == Group.GOOD ? ResourceManager.goodTankU : ResourceManager.badTankU, x, y, null);
@@ -35,9 +110,7 @@ public class Tank {
             default:
                 break;
         }
-
         randomDir();
-
         move();
     }
 
@@ -80,7 +153,8 @@ public class Tank {
         // 如果是地方坦克，判断是否需要发射子弹
         if (group == Group.BAD && Math.random() * 100 < 10) {
             // 1.0.0版本
-            fire(new DefaultFireStrategy());
+            // fire(new game.DefaultFireStrategy());
+            fire();
         }
     }
 
@@ -99,11 +173,11 @@ public class Tank {
         }
     }
 
-    public Tank(int x, int y, Dir dir, TankFrame tankFrame, Group group) {
+    public Tank(int x, int y, Dir dir, GameModel gm, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankFrame = tankFrame;
+        this.gm = gm;
         this.group = group;
         rectangle = new Rectangle();
         rectangle.x = this.x;
@@ -143,7 +217,7 @@ public class Tank {
     public void fire() {
         int bulletX = x + TankFrame.tankWidth / 2 - TankFrame.bulletWidth / 2;
         int bulletY = y + TankFrame.tankHeight / 2 - TankFrame.bulletHeight / 2;
-        tankFrame.bullets.add(new Bullet(bulletX, bulletY, dir, group, tankFrame));
+        gm.addObject(new Bullet(bulletX, bulletY, dir, group, gm));
     }
 
     /**
@@ -160,39 +234,15 @@ public class Tank {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public Rectangle getRectangle() {
         return rectangle;
     }
 
-    public void setRectangle(Rectangle rectangle) {
-        this.rectangle = rectangle;
-    }
-
-    public boolean isLive() {
-        return live;
-    }
-
-    public void setLive(boolean live) {
-        this.live = live;
-    }
-
-    public TankFrame getTankFrame() {
-        return tankFrame;
-    }
-
-    public void setTankFrame(TankFrame tankFrame) {
-        this.tankFrame = tankFrame;
+    public GameModel getGm() {
+        return gm;
     }
 }

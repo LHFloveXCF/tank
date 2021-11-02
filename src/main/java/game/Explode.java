@@ -1,16 +1,20 @@
+package game;
+
+import game.facade.GameModel;
+import game.facade.GameObject;
+
 import java.awt.*;
 
 /**
  * tank
  * 爆炸
  */
-public class Explode {
+public class Explode extends GameObject {
     private int x;
     private int y;
     /** 爆炸当前帧 */
     private int step;
-    private TankFrame tankFrame;
-    private boolean live = true;
+    private GameModel gm;
 
     public void paint(Graphics g) {
         if (step >= ResourceManager.explodes.length) {
@@ -20,12 +24,12 @@ public class Explode {
         g.drawImage(ResourceManager.explodes[step++], x, y, null);
     }
 
-    public Explode(int x, int y, TankFrame tankFrame) {
+    public Explode(int x, int y, GameModel gm) {
         this.x = x;
         this.y = y;
-        this.tankFrame = tankFrame;
+        this.gm = gm;
         this.step = 0;
-        new Thread(() -> new Audio("audio/explode.wav").play()).start();
+        new Thread(() -> new Audio("/audio/explode.wav").play()).start();
     }
 
     public int getX() {
@@ -42,13 +46,5 @@ public class Explode {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public boolean isLive() {
-        return live;
-    }
-
-    public void setLive(boolean live) {
-        this.live = live;
     }
 }

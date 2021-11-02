@@ -1,10 +1,11 @@
+package game;
+
 import java.io.IOException;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.SourceDataLine;
 
 public class Audio {
@@ -86,8 +87,8 @@ public class Audio {
     }
 
     public static void main(String[] args) {
-        Audio a = new Audio("audio/explode.wav");
-//		Audio a = new Audio("audio/war1.wav");
+        Audio a = new Audio("/audio/explode.wav");
+//		game.Audio a = new game.Audio("audio/war1.wav");
         a.loop();
 
     }

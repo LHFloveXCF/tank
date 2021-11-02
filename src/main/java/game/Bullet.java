@@ -1,17 +1,21 @@
+package game;
+
+import game.facade.GameModel;
+import game.facade.GameObject;
+
 import java.awt.*;
 
 /**
  * tank
  * 子弹
  */
-public class Bullet {
+public class Bullet extends GameObject {
     private int x, y;
     private static final int SPEED = 20;
-    private static final int WIDTH = ResourceManager.explodes[0].getWidth(), HEIGHT = ResourceManager.explodes[0].getHeight();
+    public static final int WIDTH = ResourceManager.explodes[0].getWidth(), HEIGHT = ResourceManager.explodes[0].getHeight();
     private Dir dir;
-    private boolean live = true;
     private Group group;
-    private TankFrame tankFrame;
+    private GameModel gm;
     private Rectangle rectangle;
 
     public void paint(Graphics g) {
@@ -68,18 +72,18 @@ public class Bullet {
         rectangle.y = y;
     }
 
-    public Bullet(int x, int y, Dir dir, Group group, TankFrame tankFrame) {
+    public Bullet(int x, int y, Dir dir, Group group, GameModel gm) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group = group;
-        this.tankFrame = tankFrame;
+        this.gm = gm;
         rectangle = new Rectangle();
         rectangle.x = this.x;
         rectangle.y = this.y;
         rectangle.width = TankFrame.bulletWidth;
         rectangle.height = TankFrame.bulletHeight;
-        tankFrame.bullets.add(this);
+        gm.addObject(this);
     }
 
     public Dir getDir() {
@@ -90,41 +94,15 @@ public class Bullet {
         this.dir = dir;
     }
 
-    public boolean isLive() {
-        return live;
-    }
-
-    public void setLive(boolean live) {
-        this.live = live;
-    }
-
     public Group getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 
-    public void collisionDetection(Tank tank) {
-        if (group == tank.getGroup()) {
-            return;
-        }
-        /*// 每次碰撞检测都新建对象，这个地方是存在问题的
-        Rectangle bulletRectangle = new Rectangle(x,y);
-        Rectangle tankRectangle = new Rectangle(tank.getX(), tank.getY());
-        if (bulletRectangle.intersects(tankRectangle)) {
-            tankFrame.tanks.remove(tank);
-            setLive(false);
-        }*/
-
-        if (isLive() && tank.isLive() && rectangle.intersects(tank.getRectangle())) {
-            tank.setLive(false);
-            setLive(false);
-
-            int eX = tank.getX() + TankFrame.tankWidth / 2 - WIDTH / 2;
-            int eY = tank.getY() + TankFrame.tankHeight / 2 - HEIGHT / 2;
-            tankFrame.explodes.add(new Explode(eX, eY, tankFrame));
-        }
+    public GameModel getGm() {
+        return gm;
     }
 }
