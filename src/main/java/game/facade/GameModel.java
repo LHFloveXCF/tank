@@ -15,6 +15,10 @@ public class GameModel {
 
     public GameModel() {
         collisions.add(new CollisionChain());
+
+        list.add(new Wall(130, 130, 100, 30));
+        list.add(new Wall(230, 330, 30, 30));
+        list.add(new Wall(230, 430, 149, 22));
     }
 
     public void addObject(GameObject gameObject) {
