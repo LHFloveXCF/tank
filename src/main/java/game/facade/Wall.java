@@ -19,13 +19,19 @@ public class Wall extends GameObject {
         this.rectangle = new Rectangle();
         rectangle.x = x;
         rectangle.y = y;
+        rectangle.width = width;
+        rectangle.height = height;
     }
 
     @Override
     public void paint(Graphics g) {
         Color color = g.getColor();
         g.setColor(Color.WHITE);
-        g.fillRect(x, y,50, 100);
+        g.fillRect(x, y, width, height);
         g.setColor(color);
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 }

@@ -160,7 +160,7 @@ public class Tank extends GameObject {
         if (group == Group.BAD && Math.random() * 100 < 10) {
             // 1.0.0版本
             // fire(new game.DefaultFireStrategy());
-            fire();
+            // fire();
         }
     }
 

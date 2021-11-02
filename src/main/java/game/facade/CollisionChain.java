@@ -13,6 +13,7 @@ public class CollisionChain implements Collision {
     public CollisionChain() {
         addCollision(new BulletTankCollision());
         addCollision(new TankTankCollision());
+        addCollision(new WallBulletCollision());
     }
 
     public void addCollision(Collision collision) {
