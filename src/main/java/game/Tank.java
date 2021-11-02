@@ -25,6 +25,8 @@ public class Tank extends GameObject {
     boolean bD = false;
     boolean bL = false;
     boolean bR = false;
+    /** 上一个位置 */
+    int oldX, oldY;
 
     @Override
     public void keyPressEvent(KeyEvent e) {
@@ -128,6 +130,9 @@ public class Tank extends GameObject {
         if (!moving) {
             return;
         }
+
+        setOldPosition(x, y);
+
         switch (dir) {
             case UP:
                 y -= SPEED;
@@ -147,6 +152,7 @@ public class Tank extends GameObject {
 
         checkBoundary();
 
+
         rectangle.x = x;
         rectangle.y = y;
 
@@ -156,6 +162,19 @@ public class Tank extends GameObject {
             // fire(new game.DefaultFireStrategy());
             fire();
         }
+    }
+
+    private void setOldPosition(int x, int y) {
+        this.oldX = x;
+        this.oldY = y;
+    }
+
+    /**
+     * 碰撞后回到上一个位置
+     */
+    public void back() {
+        this.x = oldX;
+        this.y = oldY;
     }
 
     private void checkBoundary() {

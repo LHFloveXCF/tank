@@ -14,7 +14,7 @@ public class GameModel {
     List<Collision> collisions = new LinkedList<>();
 
     public GameModel() {
-        collisions.add(new BulletTankCollision());
+        collisions.add(new CollisionChain());
     }
 
     public void addObject(GameObject gameObject) {
