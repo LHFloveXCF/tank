@@ -6,13 +6,13 @@ import java.awt.event.KeyEvent;
 /**
  * tank
  */
-public class GameObject {
+public abstract class GameObject {
 
     protected boolean live = true;
 
     protected int x, y;
 
-    public void paint(Graphics g) {}
+    public abstract void paint(Graphics g);
 
     public boolean isLive() {
         return live;
@@ -33,4 +33,8 @@ public class GameObject {
     public int getY() {
         return y;
     }
+
+    public abstract int getWidth();
+
+    public abstract int getHeight();
 }

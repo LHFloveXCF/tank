@@ -1,5 +1,6 @@
 package game;
 
+import game.decorate.RectangleBulletDecorate;
 import game.facade.GameModel;
 import game.facade.GameObject;
 
@@ -97,6 +98,16 @@ public class Tank extends GameObject {
         setDir();
     }
 
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
+    }
+
     public void paint(Graphics g) {
         switch (dir) {
             case UP:
@@ -162,7 +173,7 @@ public class Tank extends GameObject {
         if (group == Group.BAD && Math.random() * 100 < 10) {
             // 1.0.0版本
             // fire(new game.DefaultFireStrategy());
-            // fire();
+            fire();
         }
     }
 
@@ -238,7 +249,7 @@ public class Tank extends GameObject {
     public void fire() {
         int bulletX = x + WIDTH / 2 - TankFrame.bulletWidth / 2;
         int bulletY = y + HEIGHT / 2 - TankFrame.bulletHeight / 2;
-        gm.addObject(new Bullet(bulletX, bulletY, dir, group, gm));
+        gm.addObject(new RectangleBulletDecorate(new Bullet(bulletX, bulletY, dir, group, gm)));
     }
 
     /**

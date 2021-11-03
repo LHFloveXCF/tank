@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
-        for (int i = 0; i < TANKS_COUNT; i++) {
+        for (int i = 0; i < 1; i++) {
             tankFrame.gameModel.addObject(new Tank(100 + i * 60, 100, Dir.DOWN, tankFrame.gameModel, Group.BAD));
         }
         while (true) {

@@ -10,8 +10,8 @@ import java.awt.*;
  * 子弹
  */
 public class Bullet extends GameObject {
-    private static final int SPEED = 20;
-    public static final int WIDTH = ResourceManager.explodes[0].getWidth(), HEIGHT = ResourceManager.explodes[0].getHeight();
+    private static final int SPEED = PropertiesManager.getInstance().getIntValue("bullet_speed");
+    public static final int WIDTH = ResourceManager.bulletD.getWidth(), HEIGHT = ResourceManager.bulletD.getHeight();
     private Dir dir;
     private Group group;
     private GameModel gm;
@@ -29,6 +29,16 @@ public class Bullet extends GameObject {
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
             live = false;
         }
+    }
+
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
     }
 
     private void addBuffImage(Graphics g) {
@@ -104,4 +114,6 @@ public class Bullet extends GameObject {
     public GameModel getGm() {
         return gm;
     }
+
+
 }

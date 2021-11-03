@@ -30,6 +30,16 @@ public class Wall extends GameObject {
         g.setColor(color);
     }
 
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
     public Rectangle getRectangle() {
         return rectangle;
     }

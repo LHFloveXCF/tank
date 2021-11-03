@@ -42,6 +42,16 @@ public class Explode extends GameObject {
         return y;
     }
 
+    @Override
+    public int getWidth() {
+        return 0;
+    }
+
+    @Override
+    public int getHeight() {
+        return 0;
+    }
+
     public void setY(int y) {
         this.y = y;
     }
