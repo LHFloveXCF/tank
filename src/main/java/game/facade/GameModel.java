@@ -3,6 +3,9 @@ package game.facade;
 import game.Dir;
 import game.Group;
 import game.Tank;
+import game.observer.Event;
+import game.observer.Observer;
+import game.observer.TankFireObserver;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import java.util.List;
 public class GameModel {
     List<GameObject> list = new ArrayList<>();
     List<Collision> collisions = new LinkedList<>();
+    List<Observer> observers = new LinkedList<>();
 
     private Tank myTank = new Tank(100, 100, Dir.DOWN, this, Group.GOOD);
 
@@ -25,6 +29,7 @@ public class GameModel {
         list.add(new Wall(130, 130, 100, 30));
         list.add(new Wall(230, 330, 30, 30));
         list.add(new Wall(230, 430, 149, 22));
+        observers.add(new TankFireObserver());
     }
 
     public void addObject(GameObject gameObject) {
@@ -53,5 +58,11 @@ public class GameModel {
 
     public Tank getMyTank() {
         return myTank;
+    }
+
+    public void actionOn(Event event) {
+        for (Observer observer : observers) {
+            observer.actionOn(event);
+        }
     }
 }

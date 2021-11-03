@@ -3,6 +3,7 @@ package game;
 import game.decorate.RectangleBulletDecorate;
 import game.facade.GameModel;
 import game.facade.GameObject;
+import game.observer.TankFireEvent;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -49,7 +50,9 @@ public class Tank extends GameObject {
                 break;
             case VK_CONTROL:
                 // 1.0.0版本
-                fire();
+                // fire();
+
+                getGm().actionOn(new TankFireEvent(this));
             default:
                 break;
         }
