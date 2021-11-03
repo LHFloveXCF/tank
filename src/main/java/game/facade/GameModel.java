@@ -1,5 +1,9 @@
 package game.facade;
 
+import game.Dir;
+import game.Group;
+import game.Tank;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +16,8 @@ import java.util.List;
 public class GameModel {
     List<GameObject> list = new ArrayList<>();
     List<Collision> collisions = new LinkedList<>();
+
+    private Tank myTank = new Tank(100, 100, Dir.DOWN, this, Group.GOOD);
 
     public GameModel() {
         collisions.add(new CollisionChain());
@@ -43,5 +49,9 @@ public class GameModel {
                 }
             }
         }
+    }
+
+    public Tank getMyTank() {
+        return myTank;
     }
 }

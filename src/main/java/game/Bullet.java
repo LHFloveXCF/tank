@@ -10,7 +10,6 @@ import java.awt.*;
  * 子弹
  */
 public class Bullet extends GameObject {
-    private int x, y;
     private static final int SPEED = 20;
     public static final int WIDTH = ResourceManager.explodes[0].getWidth(), HEIGHT = ResourceManager.explodes[0].getHeight();
     private Dir dir;

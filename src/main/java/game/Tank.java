@@ -13,7 +13,9 @@ import static java.awt.event.KeyEvent.*;
  * 坦克
  */
 public class Tank extends GameObject {
-    private int x, y;
+    public static final int WIDTH = ResourceManager.goodTankU.getWidth();
+    public static final int HEIGHT = ResourceManager.goodTankU.getHeight();
+
     private Dir dir;
     private static final int SPEED = 5;
     private boolean moving = true;
@@ -184,11 +186,11 @@ public class Tank extends GameObject {
         if (y < 0) {
             y = 30;
         }
-        if (x > TankFrame.GAME_WIDTH - TankFrame.tankWidth) {
-            x = TankFrame.GAME_WIDTH - TankFrame.tankWidth;
+        if (x > TankFrame.GAME_WIDTH - WIDTH) {
+            x = TankFrame.GAME_WIDTH - WIDTH;
         }
-        if (y > TankFrame.GAME_HEIGHT - TankFrame.tankHeight) {
-            y = TankFrame.GAME_HEIGHT - TankFrame.tankHeight;
+        if (y > TankFrame.GAME_HEIGHT - HEIGHT) {
+            y = TankFrame.GAME_HEIGHT - HEIGHT;
         }
     }
 
@@ -201,8 +203,8 @@ public class Tank extends GameObject {
         rectangle = new Rectangle();
         rectangle.x = this.x;
         rectangle.y = this.y;
-        rectangle.width = TankFrame.tankWidth;
-        rectangle.height = TankFrame.tankHeight;
+        rectangle.width = WIDTH;
+        rectangle.height = HEIGHT;
     }
 
     public Dir getDir() {
@@ -234,8 +236,8 @@ public class Tank extends GameObject {
      * version 1.0.0
      */
     public void fire() {
-        int bulletX = x + TankFrame.tankWidth / 2 - TankFrame.bulletWidth / 2;
-        int bulletY = y + TankFrame.tankHeight / 2 - TankFrame.bulletHeight / 2;
+        int bulletX = x + WIDTH / 2 - TankFrame.bulletWidth / 2;
+        int bulletY = y + HEIGHT / 2 - TankFrame.bulletHeight / 2;
         gm.addObject(new Bullet(bulletX, bulletY, dir, group, gm));
     }
 
@@ -247,14 +249,6 @@ public class Tank extends GameObject {
      */
     public void fire(IFireStrategy fireStrategy) {
         fireStrategy.fire(this);
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public Rectangle getRectangle() {

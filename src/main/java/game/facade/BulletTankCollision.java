@@ -3,7 +3,6 @@ package game.facade;
 import game.Bullet;
 import game.Explode;
 import game.Tank;
-import game.TankFrame;
 
 /**
  * tank
@@ -28,8 +27,8 @@ public class BulletTankCollision implements Collision {
             bullet.setLive(false);
             bullet.getGm().list.remove(bullet);
             tank.getGm().list.remove(tank);
-            int eX = tank.getX() + TankFrame.tankWidth / 2 - Bullet.WIDTH / 2;
-            int eY = tank.getY() + TankFrame.tankHeight / 2 - Bullet.HEIGHT / 2;
+            int eX = tank.getX() + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
+            int eY = tank.getY() + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
             bullet.getGm().addObject(new Explode(eX, eY, bullet.getGm()));
             return true;
         }

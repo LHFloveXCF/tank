@@ -31,14 +31,8 @@ public class TankFrame extends Frame {
             GAME_HEIGHT = PropertiesManager.getInstance().getIntValue("game_height");
     public static int bulletWidth = ResourceManager.bulletD.getWidth();
     public static int bulletHeight = ResourceManager.bulletD.getHeight();
-    public static int tankWidth = ResourceManager.goodTankU.getWidth();
-    public static int tankHeight = ResourceManager.goodTankU.getHeight();
-
 
     public GameModel gameModel = new GameModel();
-
-    Tank myTank = new Tank(100, 100, Dir.DOWN, gameModel, Group.GOOD);
-
 
     public TankFrame() {
         setSize(800, 800);
@@ -82,7 +76,7 @@ public class TankFrame extends Frame {
         // g.drawString("敌方坦克数量 : " + tanks.size(), 10, 60);
         g.setColor(color);
 
-        myTank.paint(g);
+        gameModel.getMyTank().paint(g);
 
         gameModel.checkValid(g);
         gameModel.checkCollision();
@@ -91,11 +85,11 @@ public class TankFrame extends Frame {
     class MyKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-            myTank.keyPressEvent(e);
+            gameModel.getMyTank().keyPressEvent(e);
         }
         @Override
         public void keyReleased(KeyEvent e) {
-            myTank.keyReleasedEvent(e);
+            gameModel.getMyTank().keyReleasedEvent(e);
         }
     }
 

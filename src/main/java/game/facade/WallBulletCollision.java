@@ -16,7 +16,7 @@ public class WallBulletCollision implements Collision {
             }
             return false;
         } else if (o2 instanceof Wall && o1 instanceof Bullet) {
-            return checkCollision(o1,o2);
+            return checkCollision(o2, o1);
         } else {
             return false;
         }

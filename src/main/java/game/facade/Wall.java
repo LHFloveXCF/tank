@@ -6,7 +6,6 @@ import java.awt.*;
  * tank
  */
 public class Wall extends GameObject {
-    int x, y;
     private int width;
     private int height;
     private Rectangle rectangle;

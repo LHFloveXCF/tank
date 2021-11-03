@@ -10,6 +10,8 @@ public class GameObject {
 
     protected boolean live = true;
 
+    protected int x, y;
+
     public void paint(Graphics g) {}
 
     public boolean isLive() {
@@ -23,4 +25,12 @@ public class GameObject {
     public void keyPressEvent(KeyEvent event){}
 
     public void keyReleasedEvent(KeyEvent event) {}
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

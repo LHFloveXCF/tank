@@ -10,8 +10,6 @@ import java.awt.*;
  * 爆炸
  */
 public class Explode extends GameObject {
-    private int x;
-    private int y;
     /** 爆炸当前帧 */
     private int step;
     private GameModel gm;
