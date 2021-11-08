@@ -1,9 +1,11 @@
 package game;
 
 import game.facade.GameModel;
+import sun.misc.OSEnvironment;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.util.Iterator;
 
 import static java.awt.event.KeyEvent.*;
@@ -85,11 +87,63 @@ public class TankFrame extends Frame {
     class MyKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-            gameModel.getMyTank().keyPressEvent(e);
+            int keyCode = e.getKeyCode();
+            if (keyCode == VK_L) {
+                load();
+            } else if (keyCode == VK_S) {
+                save();
+            } else {
+                gameModel.getMyTank().keyPressEvent(e);
+            }
         }
         @Override
         public void keyReleased(KeyEvent e) {
             gameModel.getMyTank().keyReleasedEvent(e);
+        }
+    }
+
+    private void save() {
+        File file = new File("E:/objectData");
+        if (!file.exists() && !file.isDirectory()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(gameModel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != oos) {
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void load() {
+        File file = new File("E:/objectData");
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(new FileInputStream(file));
+            gameModel = (GameModel) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != ois) {
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

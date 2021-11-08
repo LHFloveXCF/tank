@@ -1,5 +1,7 @@
 package game.facade;
 
-public interface Collision {
+import java.io.Serializable;
+
+public interface Collision extends Serializable {
     boolean checkCollision(GameObject o1, GameObject o2);
 }

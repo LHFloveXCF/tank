@@ -8,6 +8,7 @@ import game.observer.Observer;
 import game.observer.TankFireObserver;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ import java.util.List;
 /**
  * tank
  */
-public class GameModel {
+public class GameModel implements Serializable {
     List<GameObject> list = new ArrayList<>();
     List<Collision> collisions = new LinkedList<>();
     List<Observer> observers = new LinkedList<>();

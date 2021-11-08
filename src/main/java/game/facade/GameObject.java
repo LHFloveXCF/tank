@@ -2,11 +2,12 @@ package game.facade;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 /**
  * tank
  */
-public abstract class GameObject {
+public abstract class GameObject implements Serializable {
 
     protected boolean live = true;
 
